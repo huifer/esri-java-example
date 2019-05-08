@@ -13,4 +13,4 @@
 </dependency>
 ```
 ## 文档
-[文档目录](doc/目录.md)
+[文档目录](https://github.com/huifer/esri-java-example/wiki)
