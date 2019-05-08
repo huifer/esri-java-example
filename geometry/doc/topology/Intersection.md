@@ -4,7 +4,7 @@
 
 
 
-![1557279151141](E:\mck\esri-java\geometry\doc\topology\assets\1557279151141.png)
+![1557279151141](./assets/1557279151141.png)
 
 
 ```java
