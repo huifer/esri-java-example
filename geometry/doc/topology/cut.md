@@ -4,7 +4,7 @@
 
 
 
-![1557277198018](E:\mck\esri-java\geometry\doc\topology\assets\1557277198018.png)
+![1557277198018](./assets/1557277198018.png)
 
 ## 代码实现
 
