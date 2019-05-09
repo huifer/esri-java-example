@@ -5,10 +5,9 @@
     <artifactId>jfx</artifactId>
     <groupId>com.huifer</groupId>
     <version>1.0-SNAPSHOT</version>
-    <relativePath>../jfx/pom.xml</relativePath>
   </parent>
   <modelVersion>4.0.0</modelVersion>
-  <artifactId>hellp-jfx</artifactId>
+  <artifactId>hello-jfx</artifactId>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>11</maven.compiler.source>
