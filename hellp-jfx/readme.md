@@ -55,3 +55,62 @@
   - archetypeArtifactId :javafx-archetype-fxml![1557366258004](assets/1557366258004.png)
 
 - 耐心等待模块下载
+
+### 创建一个窗口
+
+- 简单案例就添加一个Label 显示一下 Hello 文字
+
+![1557382964074](assets/1557382964074.png)
+
+### 运行一个窗口
+
+- 代码编辑，读取fxml文件并展示到窗口中
+
+  ```java
+  package com.huifer;
+  
+  import javafx.application.Application;
+  import javafx.fxml.FXMLLoader;
+  import javafx.scene.Parent;
+  import javafx.scene.Scene;
+  import javafx.stage.Stage;
+  
+  import java.io.IOException;
+  
+  /**
+   * JavaFX App
+   */
+  public class App extends Application {
+  
+      private static Scene scene;
+  
+      static void setRoot(String fxml) throws IOException {
+          scene.setRoot(loadFXML(fxml));
+      }
+  
+      private static Parent loadFXML(String fxml) throws IOException {
+          FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
+          return fxmlLoader.load();
+      }
+  
+      public static void main(String[] args) {
+          launch();
+      }
+  
+      @Override
+      public void start(Stage stage) throws IOException {
+          scene = new Scene(loadFXML("HELLO"));
+  
+          stage.setScene(scene);
+          stage.setTitle("hello - app");
+          stage.show();
+      }
+  
+  }
+  
+  ```
+
+![1557383078825](assets/1557383078825.png)
+
+
+

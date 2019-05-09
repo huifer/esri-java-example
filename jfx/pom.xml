@@ -5,8 +5,12 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.huifer</groupId>
-  <artifactId>java-fx</artifactId>
+  <artifactId>jfx</artifactId>
+  <packaging>pom</packaging>
   <version>1.0-SNAPSHOT</version>
+  <modules>
+    <module>../hellp-jfx</module>
+  </modules>
 
 
 </project>

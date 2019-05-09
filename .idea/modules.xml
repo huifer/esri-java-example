@@ -4,7 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/geometry/geometry.iml" filepath="$PROJECT_DIR$/geometry/geometry.iml" />
       <module fileurl="file://$PROJECT_DIR$/runtime/hello-arcgis-runtime/hello-arcgis-runtime.iml" filepath="$PROJECT_DIR$/runtime/hello-arcgis-runtime/hello-arcgis-runtime.iml" />
-      <module fileurl="file://$PROJECT_DIR$/java-fx/java-fx.iml" filepath="$PROJECT_DIR$/java-fx/java-fx.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hellp-jfx/hellp-jfx.iml" filepath="$PROJECT_DIR$/hellp-jfx/hellp-jfx.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jfx/jfx.iml" filepath="$PROJECT_DIR$/jfx/jfx.iml" />
       <module fileurl="file://$PROJECT_DIR$/runtime/runtime.iml" filepath="$PROJECT_DIR$/runtime/runtime.iml" />
     </modules>
   </component>

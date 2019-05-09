@@ -5,8 +5,16 @@
       <list>
         <option value="$PROJECT_DIR$/geometry/pom.xml" />
         <option value="$PROJECT_DIR$/runtime/pom.xml" />
-        <option value="$PROJECT_DIR$/java-fx/pom.xml" />
+        <option value="$PROJECT_DIR$/javafx/pom.xml" />
+        <option value="$PROJECT_DIR$/jfx/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/hello-jfx/pom.xml" />
+        <option value="$PROJECT_DIR$/java-fx/hello-jfx/pom.xml" />
+        <option value="$PROJECT_DIR$/java-fx/pom.xml" />
+      </set>
     </option>
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
