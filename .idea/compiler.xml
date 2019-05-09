@@ -7,6 +7,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="java-fx" />
         <module name="geometry" />
         <module name="hello-arcgis-runtime" />
       </profile>
@@ -14,6 +15,7 @@
     <bytecodeTargetLevel>
       <module name="geometry" target="1.12" />
       <module name="hello-arcgis-runtime" target="11" />
+      <module name="java-fx" target="1.5" />
       <module name="runtime" target="1.5" />
     </bytecodeTargetLevel>
   </component>
