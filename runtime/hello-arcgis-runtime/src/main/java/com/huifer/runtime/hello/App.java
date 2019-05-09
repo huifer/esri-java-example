@@ -8,6 +8,7 @@ import com.esri.arcgisruntime.geometry.Point;
 import com.esri.arcgisruntime.geometry.SpatialReference;
 import com.esri.arcgisruntime.geometry.SpatialReferences;
 import com.esri.arcgisruntime.layers.FeatureLayer;
+import com.esri.arcgisruntime.loadable.LoadStatus;
 import com.esri.arcgisruntime.mapping.Basemap.Type;
 import com.esri.arcgisruntime.mapping.Viewpoint;
 import com.esri.arcgisruntime.mapping.view.Callout;
@@ -15,6 +16,7 @@ import com.esri.arcgisruntime.mapping.view.DrawStatus;
 import com.esri.arcgisruntime.mapping.view.Graphic;
 import com.esri.arcgisruntime.mapping.view.GraphicsOverlay;
 import com.esri.arcgisruntime.symbology.SimpleMarkerSymbol;
+import com.esri.arcgisruntime.toolkit.Compass;
 import com.esri.arcgisruntime.toolkit.Scalebar;
 import java.text.DecimalFormat;
 import javafx.application.Application;
@@ -22,7 +24,9 @@ import javafx.geometry.Insets;
 import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.Slider;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -80,7 +84,22 @@ public class App extends Application {
         createScaleBar(stackPane);
         // 创建进度条
         createProgressBar(stackPane);
+        createCompass(stackPane);
 
+
+    }
+
+    /**
+     * 创建指北针
+     */
+    private void createCompass(StackPane stackPane) {
+        // 指北针创建
+        Compass compass = new Compass(mapView);
+        // 设置指北针并添加到stackPane
+        compass.setAutoHide(false);
+        stackPane.getChildren().addAll(compass);
+        StackPane.setAlignment(compass, Pos.TOP_RIGHT);
+        StackPane.setMargin(compass, new Insets(10, 10, 0, 0));
     }
 
     /**

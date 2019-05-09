@@ -189,6 +189,23 @@ public class App extends Application {
 
 ```
 ![进度条](./assets/进度条.png)
+### 指北针
+
+```java
+    /**
+     * 创建指北针
+     */
+    private void createCompass(StackPane stackPane) {
+        // 指北针创建
+        Compass compass = new Compass(mapView);
+        // 设置指北针并添加到stackPane
+        compass.setAutoHide(false);
+        stackPane.getChildren().addAll(compass);
+        StackPane.setAlignment(compass, Pos.TOP_RIGHT);
+        StackPane.setMargin(compass, new Insets(10, 10, 0, 0));
+    }
+```
+![指北针](./assets/指北针.png)
 
 ## 地图点击
 ```java
