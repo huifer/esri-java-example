@@ -114,3 +114,104 @@
 
 
 
+## 加载流程
+1. 加载FXML 文件
+2. 根据FXML 文件中的fx:controller 调用其无参构造,创建控制器实例
+3. @FXML 注解匹配fx:id 定义的元素
+4. 加载onAction 等函数
+5. 如果有initialize() 那么调用这个方法
+
+### 注意事项
+- 不要在控制器中定义任何的构造函数
+- 每一个FXML 对应一个controller 
+
+### 基础模板
+- app
+```java
+package com.huifer;
+
+import java.io.IOException;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+/**
+ * 控件
+ *
+ * @author huifer
+ */
+public class AppDemo extends Application {
+
+    private static Scene scene;
+
+    private static Parent loadFXML(String fxml) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(AppDemo.class.getResource(fxml + ".fxml"));
+        return fxmlLoader.load();
+    }
+
+    public static void main(String[] args) {
+        launch();
+    }
+
+    @Override
+    public void start(Stage stage) throws IOException {
+        // button
+        helloButton1(stage);
+    }
+
+
+    /**
+     * 通过文件读取来显示按钮
+     */
+    private void helloButton1(Stage stage) throws IOException {
+        scene = new Scene(loadFXML("button"));
+        stage.setTitle("hello button1");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+}
+
+```
+- controller 
+```java
+package com.huifer;
+
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+
+/**
+ * <p>Title : LabelController </p>
+ * <p>Description : lable</p>
+ *
+ * @author huifer
+ * @date 2019-05-10
+ */
+public class LabelController {
+
+
+    @FXML
+    private Label label;
+
+    @FXML
+    private void initialize() {
+        label.setText("aaaaaaaaaaaaaaaaaaaaa");
+    }
+
+
+}
+
+```
+- fxml
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+
+
+<Label prefHeight="139.0" prefWidth="222.0" text="Label" xmlns="http://javafx.com/javafx/11.0.1"
+  xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.huifer.LabelController" fx:id="label"/>
+
+```
