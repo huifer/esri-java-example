@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.huifer.RadioButtonController">
+   <children>
+      <Label layoutX="78.0" layoutY="39.0" text="选择性别" />
+      <RadioButton fx:id="r1" layoutX="198.0" layoutY="132.0" mnemonicParsing="false" text="男">
+         <toggleGroup>
+            <ToggleGroup fx:id="group" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="r2" layoutX="198.0" layoutY="172.0" mnemonicParsing="false" text="女" toggleGroup="$group" />
+      <Label fx:id="showLabel" layoutX="108.0" layoutY="228.0" prefHeight="15.0" prefWidth="161.0" text="选择结果是" />
+   </children>
+</Pane>
