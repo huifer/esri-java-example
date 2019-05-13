@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+  <?import java.lang.String?>
+  <?import javafx.collections.FXCollections?>
+  <?import javafx.scene.control.ChoiceBox?>
+  <?import javafx.scene.control.Label?>
+  <?import javafx.scene.layout.HBox?>
+<HBox fx:controller="com.huifer.ChoiceBoxController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<children>
+   <ChoiceBox fx:id="choiceBox" prefWidth="150.0" >
+      <items>
+         <FXCollections fx:factory="observableArrayList">
+            <String fx:id="c1" fx:value="下拉选择框1"/>
+            <String fx:id="c2" fx:value="下拉选择框2"/>
+         </FXCollections>
+      </items>
+   </ChoiceBox>
+   <Label fx:id="label" prefHeight="64.0" prefWidth="107.0" text="Label" />
+</children>
+</HBox>

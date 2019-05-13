@@ -52,9 +52,57 @@ public class App extends Application {
 //        helloRadioButtonFxml(stage);
 //        helloRadioButtonNotFxml(stage);
 
-        // check box
-        helloCheckBoxFxml(stage);
+        // check box 勾选框
+//        helloCheckBoxFxml(stage);
 
+//        choiceBox 下拉选择器
+//        helloChoiceBoxFxml(stage);
+
+        // textField 文本输入框
+//        helloTextField(stage);
+
+//        password 密码框
+        helloPassWord(stage);
+        // 登陆
+//        login(stage);
+
+        // 进度条
+        helloProgressBar(stage);
+    }
+
+    private void helloProgressBar(Stage stage) throws IOException {
+        scene = new Scene(loadFXML("progressBar"));
+        stage.setTitle("hello ProgressBar");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    private void login(Stage stage) throws IOException {
+        scene = new Scene(loadFXML("login"));
+        stage.setTitle("login");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    private void helloPassWord(Stage stage) throws IOException {
+        scene = new Scene(loadFXML("password"));
+        stage.setTitle("hello password");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    private void helloTextField(Stage stage) throws IOException {
+        scene = new Scene(loadFXML("textField"));
+        stage.setTitle("hello textField");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    private void helloChoiceBoxFxml(Stage stage) throws IOException {
+        scene = new Scene(loadFXML("choiceBox"));
+        stage.setTitle("hello choiceBox");
+        stage.setScene(scene);
+        stage.show();
     }
 
     private void helloCheckBoxFxml(Stage stage) throws IOException {
@@ -62,7 +110,6 @@ public class App extends Application {
         stage.setTitle("hello checkBox");
         stage.setScene(scene);
         stage.show();
-
     }
 
     private void helloRadioButtonNotFxml(Stage stage) {

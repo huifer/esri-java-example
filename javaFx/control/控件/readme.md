@@ -563,31 +563,389 @@ public class CheckBoxController {
 
 ### fxml文件
 
+- 制作一个下拉选择框，右侧label显示选择的内容。
+- 使用sceneBulider 来制作这个相对简单，只需要拖动控件到画布中就行。这里有一个问题：下拉框的选择项应该怎么填写，笔者没有找到相关方案。笔者使用的方法是手动修改fxml文件:boom:
+
+![1557728888097](assets/1557728888097.png)
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<HBox fx:controller="com.huifer.ChoiceBoxController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ChoiceBox fx:id="choiceBox" prefWidth="150.0" >
+         <items>
+            <FXCollections fx:factory="observableArrayList">
+               <String fx:id="c1" fx:value="下拉选择框1"/>
+               <String fx:id="c2" fx:value="下拉选择框2"/>
+            </FXCollections>
+         </items>
+      </ChoiceBox>
+      <Label fx:id="label" prefHeight="64.0" prefWidth="107.0" text="Label" />
+   </children>
+</HBox>
+```
+
 ### controller编写
 
+```java
+public class ChoiceBoxController {
+
+    @FXML
+    private ChoiceBox choiceBox;
+    @FXML
+    private Label label;
+
+
+    @FXML
+    private void initialize() {
+
+        ObservableList items = choiceBox.getItems();
+
+        choiceBox.getSelectionModel().selectedIndexProperty().addListener(
+                new ChangeListener<Number>() {
+                    @Override
+                    public void changed(ObservableValue<? extends Number> observableValue,
+                            Number number, Number t1) {
+                        Object o = items.get(t1.intValue());
+                        System.out.println("当前选择" + o);
+                        label.setText(String.valueOf(o));
+                    }
+                });
+    }
+
+
+}
+```
+
+- 不使用fxml中的数据自定义 下拉选择框的内容列表
+
+  ```java
+  /**
+   * 自定义items
+   */
+  private void userDefinedItems() {
+      ObservableList<String> strings = FXCollections.observableArrayList("A", "B", "C", "D");
+      choiceBox.setItems(strings);
+      choiceBox.getSelectionModel().selectedIndexProperty().addListener(
+              new ChangeListener<Number>() {
+                  @Override
+                  public void changed(ObservableValue<? extends Number> observableValue,
+                          Number number, Number t1) {
+                      System.out.println("当前选择" + strings.get(t1.intValue()));
+  
+                      label.setText(String.valueOf(strings.get(t1.intValue())));
+                  }
+              });
+  }
+  ```
+
 ### 总结
+
+1. scene builder 不一定能给我们提供我们想要的，也许是我没有找到
+
+   ```xml
+   <ChoiceBox fx:id="choiceBox" prefWidth="150.0" >
+      <items>
+         <FXCollections fx:factory="observableArrayList">
+            <String fx:id="c1" fx:value="下拉选择框1"/>
+            <String fx:id="c2" fx:value="下拉选择框2"/>
+         </FXCollections>
+      </items>
+   </ChoiceBox>
+   ```
+
+2. 通常我会在创建fxml的时候一两个下拉选择框，后续使用自定义的方式来补充完整下拉选择框的内容
+
+
+
+
+
+
 
 ## 输入框
-
 ### fxml文件
+- 创建输入框、label、按钮，实现：点击按钮后将输入框的内容显示到label中
+
+![1557731828144](assets/1557731828144.png)
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.huifer.TextController">
+  <children>
+    <TextField fx:id="textField" />
+    <Label fx:id="label" prefHeight="142.0" prefWidth="277.0" text="Label" />
+      <Button fx:id="button" mnemonicParsing="false" text="Button" />
+
+  </children>
+</HBox>
+```
+
+
 
 ### controller编写
 
+```java
+package com.huifer;
+
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+
+/**
+ * <p>Title : TextController </p>
+ * <p>Description : 文本输入框</p>
+ *
+ * @author huifer
+ * @date 2019-05-13
+ */
+public class TextController {
+
+    @FXML
+    private TextField textField;
+
+    @FXML
+    private Label label;
+
+    @FXML
+    private Button button;
+
+    @FXML
+    void initialize() {
+        button.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                label.setText(textField.getText());
+            }
+        });
+    }
+}
+```
+
+![](assets/text.gif)
+
 ### 总结
+
+1. 将前面学到的按钮、label 配合textField进行使用
+
+
+
+
 
 ## 密码
 ### fxml文件
 
+- 创建密码输入框、label、按钮，实现：点击按钮后将输入框的内容显示到label中
+
+![1557734934908](assets/1557734934908.png)
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.layout.HBox?>
+
+
+<HBox fx:controller="com.huifer.PassWordController" maxHeight="-Infinity" maxWidth="-Infinity"
+  minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"
+  xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+  <children>
+    <PasswordField fx:id="passwordField"/>
+    <Label fx:id="label" prefHeight="15.0" prefWidth="174.0" text="Label"/>
+    <Button fx:id="button" mnemonicParsing="false" text="Button"/>
+  </children>
+</HBox>
+```
+
 ### controller编写
+
+```java
+package com.huifer;
+
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+
+/**
+ * <p>Title : PassWordController </p>
+ * <p>Description : password</p>
+ *
+ * @author huifer
+ * @date 2019-05-13
+ */
+public class PassWordController {
+
+
+    @FXML
+    private PasswordField passwordField;
+    @FXML
+    private Label label;
+    @FXML
+    private Button button;
+
+    @FXML
+    void initialize() {
+
+        button.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                label.setText("密码：" + passwordField.getText());
+            }
+        });
+    }
+
+}
+```
+
+![pwd](assets/pwd.gif)
 
 ### 总结
 
+1. 密码框操作和输入框操作相同
+
+
+
+## 登陆实例
+
+![1557735914702](assets/1557735914702.png)
+
+- 登陆账号密码校验成功弹出登陆成功，失败则弹出登陆失败
+
+### fxml文件
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+
+
+<Pane fx:controller="com.huifer.LoginController" maxHeight="-Infinity" maxWidth="-Infinity"
+  minHeight="-Infinity" minWidth="-Infinity" prefHeight="305.0" prefWidth="463.0"
+  xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+  <children>
+    <Label layoutX="117.0" layoutY="92.0" prefHeight="30.0" prefWidth="72.0" text="用户名"/>
+    <Label layoutX="117.0" layoutY="152.0" prefHeight="30.0" prefWidth="72.0" text="密码"/>
+    <Button fx:id="loginButton"  layoutX="189.0" layoutY="219.0" mnemonicParsing="false" text="登陆"/>
+    <TextField fx:id="user" layoutX="174.0" layoutY="96.0"/>
+    <PasswordField fx:id="pwd" layoutX="174.0" layoutY="156.0"/>
+  </children>
+</Pane>
+```
+
+
+
+### controller 编写
+
+```java
+package com.huifer;
+
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.fxml.FXML;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+
+/**
+ * <p>Title : LoginController </p>
+ * <p>Description : 登陆</p>
+ *
+ * @author huifer
+ * @date 2019-05-13
+ */
+public class LoginController {
+
+    @FXML
+    private Button loginButton;
+    @FXML
+    private TextField user;
+    @FXML
+    private PasswordField pwd;
+
+
+    @FXML
+    void initialize() {
+
+        loginButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                if (user.getText().equals("1") && pwd.getText().equals("1")) {
+                    loginInfo("登陆成功");
+                } else {
+                    loginInfo("登陆失败");
+                }
+            }
+        });
+
+
+    }
+
+    private void loginInfo(String loginfo) {
+        Scene scene = new Scene(new Group());
+        Stage stage = new Stage();
+        stage.setTitle("登录信息");
+
+        Label label = new Label();
+        label.setText(loginfo);
+        label.setTextFill(Color.web("#032677"));
+        ((Group) scene.getRoot()).getChildren().add(label);
+
+        stage.setScene(scene);
+        stage.show();
+    }
+}
+```
+
+![login](assets/login.gif)
+
+### 总结
+
+1. 弹框如何创建，方式有很多本案例选择了之前使用过的label 来作为呈现登陆信息的容器
+
+   
+
+
+
 ## 进度条
+
 ### fxml文件
 
 ### controller编写
 
 ### 总结
+
+
+
+
 
 ## loading
 ### fxml文件
@@ -596,6 +954,10 @@ public class CheckBoxController {
 
 ### 总结
 
+
+
+
+
 ## 文件选择器
 ### fxml文件
 
@@ -603,12 +965,20 @@ public class CheckBoxController {
 
 ### 总结
 
+
+
+
+
 ## 时间选择器
 ### fxml文件
 
 ### controller编写
 
 ### 总结
+
+
+
+
 
 ## 菜单
 ### fxml文件
