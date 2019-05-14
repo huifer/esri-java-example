@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+
+<MenuBar fx:controller="com.huifer.MenuController" xmlns:fx="http://javafx.com/fxml/1"
+  xmlns="http://javafx.com/javafx/11.0.1">
+  <menus>
+    <Menu fx:id="menuFile" mnemonicParsing="false" text="File">
+      <items>
+        <MenuItem fx:id="f1" mnemonicParsing="false" text="菜单1的子菜单"/>
+        <Menu fx:id="f2" mnemonicParsing="false" text="menu2"/>
+      </items>
+    </Menu>
+  </menus>
+</MenuBar>

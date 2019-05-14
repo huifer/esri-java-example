@@ -933,38 +933,43 @@ public class LoginController {
 
    
 
-
-
-## 进度条
-
-### fxml文件
-
-### controller编写
-
-### 总结
-
-
-
-
-
-## loading
-### fxml文件
-
-### controller编写
-
-### 总结
-
-
-
-
-
 ## 文件选择器
-### fxml文件
+
+- 文件选择器在scene build 中没有 就是用 controller的方式直接编写了
 
 ### controller编写
 
+```java
+private void helloFileChooser(Stage stage) {
+    VBox vbox = new VBox(20);
+    Scene scene = new Scene(vbox, 400, 400);
+    stage.setScene(scene);
+
+    Button buttonLoad = new Button("Load");
+    buttonLoad.setOnAction(new EventHandler<ActionEvent>() {
+        @Override
+        public void handle(ActionEvent arg0) {
+            FileChooser fileChooser = new FileChooser();
+            FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(
+                    "TXT files (*.txt)", "*.txt");
+            fileChooser.getExtensionFilters().add(extFilter);
+            File file = fileChooser.showOpenDialog(stage);
+            System.out.println(file);
+        }
+    });
+
+    vbox.getChildren().add(buttonLoad);
+    stage.show();
+
+
+}
+```
+
+![](assets/文件选择器.gif)
+
 ### 总结
 
+1. scene build 不是万能的.
 
 
 
@@ -972,9 +977,74 @@ public class LoginController {
 ## 时间选择器
 ### fxml文件
 
+- 创建时间选择器获取选择的时间
+
+![1557814312141](assets/1557814312141.png)
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.layout.VBox?>
+
+
+<VBox fx:controller="com.huifer.DatePickerController" maxHeight="-Infinity" maxWidth="-Infinity"
+  minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"
+  xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+  <children>
+    <DatePicker fx:id="datePicker"/>
+  </children>
+</VBox>
+```
+
 ### controller编写
 
+
+
+```java
+package com.huifer;
+
+import java.time.LocalDate;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.fxml.FXML;
+import javafx.scene.control.DatePicker;
+
+/**
+ * <p>Title : DatePickerController </p>
+ * <p>Description : 时间选择器</p>
+ *
+ * @author huifer
+ * @date 2019-05-14
+ */
+public class DatePickerController {
+
+    @FXML
+    private DatePicker datePicker;
+
+    @FXML
+    void initialize() {
+        datePicker.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                LocalDate value = datePicker.getValue();
+                System.out.println(value);
+
+            }
+        });
+    }
+
+
+}
+```
+
+![](assets/时间选择器.gif)
+
 ### 总结
+
+1. 使用setOnAction 方法来获取改变的时间
+
+
 
 
 
@@ -983,6 +1053,91 @@ public class LoginController {
 ## 菜单
 ### fxml文件
 
+- 使用scene build 来做效果没有那么好
+
+![1557817371877](assets/1557817371877.png)
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+
+<MenuBar fx:controller="com.huifer.MenuController" xmlns:fx="http://javafx.com/fxml/1"
+  xmlns="http://javafx.com/javafx/11.0.1">
+  <menus>
+    <Menu fx:id="menuFile" mnemonicParsing="false" text="File">
+      <items>
+        <MenuItem fx:id="f1" mnemonicParsing="false" text="菜单1的子菜单"/>
+        <Menu fx:id="f2" mnemonicParsing="false" text="menu2"/>
+      </items>
+    </Menu>
+  </menus>
+</MenuBar>
+```
+
 ### controller编写
 
+```java
+package com.huifer;
+
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.fxml.FXML;
+import javafx.scene.control.CheckMenuItem;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuItem;
+
+/**
+ * <p>Title : MenuController </p>
+ * <p>Description : 菜单</p>
+ *
+ * @author huifer
+ * @date 2019-05-14
+ */
+public class MenuController {
+
+    @FXML
+    private Menu menuFile;
+
+
+    @FXML
+    private MenuItem f1;
+
+    @FXML
+    private Menu f2;
+
+
+    @FXML
+    void initialize() {
+
+        CheckMenuItem c1 = new CheckMenuItem("Java");
+        c1.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                System.out.println("java");
+
+            }
+        });
+        f2.getItems().addAll(
+                c1,
+                new CheckMenuItem("python"),
+                new CheckMenuItem("c++"));
+
+        f1.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                System.out.println(f1.getText());
+            }
+        });
+    }
+
+}
+```
+
+![](assets/菜单.gif)
+
 ### 总结
+
+1. scene build 不是那么好用 。还是要熟练使用 java-fx 中提供的API

@@ -1,15 +1,20 @@
 package com.huifer;
 
+import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Toggle;
@@ -18,6 +23,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 /**
@@ -62,12 +68,80 @@ public class App extends Application {
 //        helloTextField(stage);
 
 //        password 密码框
-        helloPassWord(stage);
+//        helloPassWord(stage);
         // 登陆
 //        login(stage);
 
         // 进度条
-        helloProgressBar(stage);
+//        helloProgressBar(stage);
+
+        // 时间选择
+//        helloDatePickNotFxml(stage);
+//        helloDatePickFxml(stage);
+
+        // 文件选择
+//        helloFileChooser(stage);
+
+        // 菜单
+        helloMenu(stage);
+    }
+
+    private void helloMenu(Stage stage) throws IOException {
+        scene = new Scene(loadFXML("menu"));
+        stage.setTitle("hello menu");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    private void helloFileChooser(Stage stage) {
+        VBox vbox = new VBox(20);
+        Scene scene = new Scene(vbox, 400, 400);
+        stage.setScene(scene);
+
+        Button buttonLoad = new Button("Load");
+        buttonLoad.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent arg0) {
+                FileChooser fileChooser = new FileChooser();
+                FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(
+                        "TXT files (*.txt)", "*.txt");
+                fileChooser.getExtensionFilters().add(extFilter);
+                File file = fileChooser.showOpenDialog(stage);
+                System.out.println(file);
+            }
+        });
+
+        vbox.getChildren().add(buttonLoad);
+        stage.show();
+
+
+    }
+
+    private void helloDatePickFxml(Stage stage) throws IOException {
+        scene = new Scene(loadFXML("datePicker"));
+        stage.setTitle("hello datePicker");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    private void helloDatePickNotFxml(Stage stage) {
+
+        VBox vbox = new VBox(20);
+        Scene scene = new Scene(vbox, 400, 400);
+        stage.setScene(scene);
+
+        DatePicker checkInDatePicker = new DatePicker();
+
+        vbox.getChildren().add(checkInDatePicker);
+        checkInDatePicker.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                LocalDate value = checkInDatePicker.getValue();
+                System.out.println(value);
+            }
+        });
+        stage.show();
+
     }
 
     private void helloProgressBar(Stage stage) throws IOException {
